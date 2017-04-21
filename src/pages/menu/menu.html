@@ -1,0 +1,40 @@
+<ion-split-pane no-padding>
+
+  <ion-menu [content]="content"
+            no-padding
+            type="overlay"
+            side="left">
+
+    <ion-content no-padding>
+      <br>
+      <br>
+      <h2 text-center>Menu</h2>
+      <br>
+      <br>
+      <ion-list>
+        <button ion-item *ngFor="let button of menuButtons"
+                mode="ios"
+                (click)="clickedOpenPage(button.pageName, button.tabIdx)"
+                [class.activeHighlight]="isActiveTab(button.pageName)"
+                padding-left>
+          <ion-icon [name]=button.icon
+                    item-left
+                    style="font-size:25px; text-align:center;">
+          </ion-icon>
+
+          <span ion-text color=button.color>
+            &nbsp;&nbsp;{{button.label}}
+          </span>
+        </button>
+      </ion-list>
+    </ion-content>
+
+  </ion-menu>
+
+  <ion-nav [root]="menuRoot"
+           #content
+           persistent="false"
+           main>
+  </ion-nav>
+
+</ion-split-pane>
