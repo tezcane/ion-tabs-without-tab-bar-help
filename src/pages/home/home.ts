@@ -1,5 +1,5 @@
-import {Component,ViewChild}   from "@angular/core";
-import {Events,IonicPage,Tabs} from "ionic-angular";
+import {Component,ViewChild                 } from "@angular/core";
+import {IonicPage,Events,MenuController,Tabs} from "ionic-angular";
 
 import {Log} from "../../utils/log";
 
@@ -18,39 +18,29 @@ import {Log} from "../../utils/log";
 })
 export class PageHome {
   @ViewChild("menuTabs") tabRef: Tabs;
-  protected static tabRefStatic: Tabs;
-  protected static tabIdx: number = 0;
+  protected tabIdx: number = 0;
 
   protected readonly PAGE_NEWS:     string = "PageNews";
   protected readonly PAGE_SETTINGS: string = "PageSettings";
   protected readonly PAGE_CONTACT:  string = "PageContact";
 
-  constructor(private events: Events) {
+  constructor(private events: Events,
+              private menu:   MenuController) {
     Log.trac("HELLO!", "constructor", "PageHome");
   }
 
   ngOnInit() {
-    PageHome.tabRefStatic = this.tabRef; //make static so we can easily go to menuRoot
-
     this.events.subscribe('menu:change', (tabIdx: number) => {
-      Log.dbg1("got tabIdx = "+tabIdx, "ngOnInit.events.subscribe", "PageHome");
+      //Anytime a user selects a menu button we close the menu
+      this.menu.close().then(() => {});
 
-      if(PageHome.tabIdx == tabIdx) {
+      if(this.tabIdx == tabIdx) {
         Log.dbg1("Already on tabIdx "+tabIdx);
-      } else if(PageHome.tabIdx != tabIdx) {
-        PageHome.switchTabs(tabIdx);
+      } else if(this.tabIdx != tabIdx) {
+        Log.dbg1("Navigating from tabIdx "+this.tabIdx+" to tabIdx "+tabIdx);
+        this.tabIdx = tabIdx;
+        this.tabRef.select(this.tabIdx);
       }
     });
-  }
-
-  public static goToRootTab(): void {
-    Log.dbg1("Changing back to rootMenu of tabIdx 0");
-    PageHome.switchTabs(0);
-  }
-
-  private static switchTabs(tabIdx: number): void {
-    Log.dbg1("Navigating from tabIdx "+PageHome.tabIdx+" to tabIdx "+tabIdx);
-    PageHome.tabIdx = tabIdx;
-    PageHome.tabRefStatic.select(PageHome.tabIdx);
   }
 }

@@ -1,5 +1,5 @@
-import {Component,ViewChild                } from "@angular/core";
-import {IonicPage,Nav,MenuController,Events} from "ionic-angular";
+import {Component,ViewChild } from "@angular/core";
+import {IonicPage,Nav,Events} from "ionic-angular";
 
 import {Log} from "../../utils/log";
 
@@ -24,15 +24,13 @@ export class PageMenu {
     { pageName: this.PAGE_CONTACT,  tabIdx: 2, color: "text2", label: "Contact",  icon: "megaphone"}
   ];
 
-  constructor(private menu:     MenuController,
-              private events:   Events) {
+  constructor(private events: Events) {
     Log.trac("Hello!", "constructor", "PageMenu");
   }
 
   protected clickedOpenPage(page: string, tabIdx: number): void {
     this.activeTab = page;
     this.events.publish("menu:change", tabIdx);
-    this.menu.close().then(() => {}); //close menu so not open on next page
   }
 
   protected isActiveTab(page: string): boolean {

@@ -1,5 +1,10 @@
 # ion-tabs-without-tab-bar-help
-Need help to get rid of ion-tabs bar from bottom of my root pages.
+Need help to get rid of ion-tabs bar from bottom of my tab pages (both root and child tabs).
+
+Also, adding following to app.modules.ts:
+IonicModule.forRoot(MyApp, {tabsHideOnSubPages: true})
+Gets rid of the Tab Bar on child tabs; however, it causes the Tab
+switch behavior to break.
 
 # Setup
 1. clone repo

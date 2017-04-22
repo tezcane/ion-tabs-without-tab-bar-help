@@ -1,10 +1,7 @@
-import {Component              } from "@angular/core";
-import {IonicPage,NavController} from "ionic-angular";
-
-import {PageHome} from "../home/home";
+import {Component                     } from "@angular/core";
+import {IonicPage,NavController,Events} from "ionic-angular";
 
 import {Log     } from "../../utils/log";
-
 
 @IonicPage()
 @Component({
@@ -36,7 +33,8 @@ import {Log     } from "../../utils/log";
 export class PageContact {
   protected readonly PAGE_CONTACT2 = "PageContact2";
 
-  constructor(private navCtrl: NavController) {
+  constructor(private navCtrl: NavController,
+              private events:  Events) {
     Log.trac("HELLO!", "constructor", "PageContact");
   }
 
@@ -45,6 +43,6 @@ export class PageContact {
   }
 
   protected clickedBackButton() {
-    PageHome.goToRootTab();
+    this.events.publish("menu:change", 0); //go to rootTab (News Page)
   }
 }
