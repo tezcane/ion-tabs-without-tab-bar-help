@@ -12,6 +12,7 @@ import {Log} from "../../utils/log";
     <ion-buttons left>
       <button ion-button
               (click)="clickedBackButton()"
+              menuClose
               icon-only>
         <ion-icon name="arrow-back"></ion-icon>
       </button>

@@ -9,15 +9,16 @@ import {Log} from "../../utils/log";
   templateUrl: "menu.html",
 })
 export class PageMenu {
-  @ViewChild("content") nav: Nav;
+//@ViewChild("content") nav: Nav; //not needed for now
 
   protected readonly PAGE_HOME:     string = "PageHome";
   protected readonly PAGE_NEWS:     string = "PageNews";        //tabIdx 0 (this is the root, not on menu)
   protected readonly PAGE_SETTINGS: string = "PageSettings";    //tabIdx 1 (On menu)
   protected readonly PAGE_CONTACT:  string = "PageContact";     //tabIdx 2 (On menu)
 
-  protected menuRoot:     string = this.PAGE_HOME; //sets menu's default page
-  private   activeTabIdx: number = 0;
+  private   tabIdx:   number = 0; //PAGE_NEWS is default tab
+
+  protected menuRoot: string = this.PAGE_HOME; //sets MENU's default page (this contains the ion-tabs)
 
   protected readonly menuButtons = [
     { pageName: this.PAGE_SETTINGS, tabIdx: 1, color: "text1", label: "Settings", icon: "settings"},
@@ -29,15 +30,11 @@ export class PageMenu {
   }
 
   protected clickedMenuButton(tabIdx: number): void {
-    if(this.activeTabIdx == tabIdx) {
-      Log.dbg1("Already on this tab")
-      return; //we are already on this tab
-    }
-    this.activeTabIdx = tabIdx
-    this.events.publish("menu:change", tabIdx); //change tabs
+    this.tabIdx = tabIdx
+    this.events.publish("menu:change", tabIdx); //change tabs (if needed, we can't detect here)
   }
 
   protected isActiveTab(tabIdx: number): boolean {
-    return this.activeTabIdx == tabIdx;
+    return this.tabIdx == tabIdx;
   }
 }

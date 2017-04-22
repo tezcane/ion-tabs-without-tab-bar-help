@@ -1,5 +1,5 @@
-import {Component,ViewChild                 } from "@angular/core";
-import {IonicPage,Events,MenuController,Tabs} from "ionic-angular";
+import {Component,ViewChild  } from "@angular/core";
+import {IonicPage,Events,Tabs} from "ionic-angular";
 
 import {Log} from "../../utils/log";
 
@@ -18,15 +18,15 @@ import {Log} from "../../utils/log";
 })
 export class PageHome {
   @ViewChild("menuTabs")
-  protected tabRef: Tabs;
-  protected tabIdx: number = 0;
+  private tabRef: Tabs;
 
-  protected readonly PAGE_NEWS:     string = "PageNews";
-  protected readonly PAGE_SETTINGS: string = "PageSettings";
-  protected readonly PAGE_CONTACT:  string = "PageContact";
+  protected readonly PAGE_NEWS:     string = "PageNews";     //tabIdx 0 (not on menu)
+  protected readonly PAGE_SETTINGS: string = "PageSettings"; //tabIdx 1
+  protected readonly PAGE_CONTACT:  string = "PageContact";  //tabIdx 2
 
-  constructor(private events:   Events,
-              private menuCtrl: MenuController) {
+  protected tabIdx: number = 0; //PAGE_NEWS is the default tab
+
+  constructor(private events: Events) {
     Log.trac("HELLO!", "constructor", "PageHome");
   }
 
@@ -39,8 +39,6 @@ export class PageHome {
         this.tabIdx = tabIdx;
         this.tabRef.select(this.tabIdx);
       }
-      //Anytime a user selects a menu button we close the menu
-      this.menuCtrl.close().then(() => {});
     });
   }
 }
