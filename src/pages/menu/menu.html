@@ -14,8 +14,9 @@
       <ion-list>
         <button ion-item *ngFor="let button of menuButtons"
                 mode="ios"
-                (click)="clickedOpenPage(button.pageName, button.tabIdx)"
-                [class.activeHighlight]="isActiveTab(button.pageName)"
+                (click)="clickedMenuButton(button.tabIdx)"
+                [class.activeHighlight]="isActiveTab(button.tabIdx)"
+                menuClose
                 padding-left>
           <ion-icon [name]=button.icon
                     item-left

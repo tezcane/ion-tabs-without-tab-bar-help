@@ -16,8 +16,8 @@ export class PageMenu {
   protected readonly PAGE_SETTINGS: string = "PageSettings";    //tabIdx 1 (On menu)
   protected readonly PAGE_CONTACT:  string = "PageContact";     //tabIdx 2 (On menu)
 
-  protected menuRoot:  string = this.PAGE_HOME; //sets menu's default page
-  private   activeTab: string = this.menuRoot;
+  protected menuRoot:     string = this.PAGE_HOME; //sets menu's default page
+  private   activeTabIdx: number = 0;
 
   protected readonly menuButtons = [
     { pageName: this.PAGE_SETTINGS, tabIdx: 1, color: "text1", label: "Settings", icon: "settings"},
@@ -28,12 +28,16 @@ export class PageMenu {
     Log.trac("Hello!", "constructor", "PageMenu");
   }
 
-  protected clickedOpenPage(page: string, tabIdx: number): void {
-    this.activeTab = page;
-    this.events.publish("menu:change", tabIdx);
+  protected clickedMenuButton(tabIdx: number): void {
+    if(this.activeTabIdx == tabIdx) {
+      Log.dbg1("Already on this tab")
+      return; //we are already on this tab
+    }
+    this.activeTabIdx = tabIdx
+    this.events.publish("menu:change", tabIdx); //change tabs
   }
 
-  protected isActiveTab(page: string): boolean {
-    return this.activeTab == page;
+  protected isActiveTab(tabIdx: number): boolean {
+    return this.activeTabIdx == tabIdx;
   }
 }
