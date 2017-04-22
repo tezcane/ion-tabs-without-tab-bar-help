@@ -7,12 +7,12 @@ import {Log} from "../../utils/log";
 @Component({
   selector: "home",
   template: `
-<ion-content> <!--NO HEADER ON PURPOSE-->
-  <!--PROBLEM IS HERE, I DON'T WANT THE TAB BAR TO SHOW ON ROOT PAGES-->
+<!--NO HEADER ON PURPOSE-->
+<ion-content> 
   <ion-tabs #menuTabs><!-- href="#/tab/whatever" on-deselect="clearHistory()  tabsLayout="icon-hide, title-hide">-->
-    <ion-tab [root]="PAGE_NEWS"     tabTitle="DELETE"></ion-tab><!-- NOTE: NOT on menu on purpose -->
-    <ion-tab [root]="PAGE_SETTINGS" tabTitle="THIS"  ></ion-tab>
-    <ion-tab [root]="PAGE_CONTACT"  tabTitle="BAR"   ></ion-tab>
+    <ion-tab [root]="PAGE_NEWS"     tabTitle="I"></ion-tab><!-- NOTE: NOT on menu on purpose -->
+    <ion-tab [root]="PAGE_SETTINGS" tabTitle="WONT"  ></ion-tab>
+    <ion-tab [root]="PAGE_CONTACT"  tabTitle="SHOW"   ></ion-tab>
   </ion-tabs>
 </ion-content>`
 })
