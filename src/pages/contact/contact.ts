@@ -1,7 +1,7 @@
 import {Component                     } from "@angular/core";
 import {IonicPage,NavController,Events} from "ionic-angular";
 
-import {Log     } from "../../utils/log";
+import {Log} from "../../utils/log";
 
 @IonicPage()
 @Component({

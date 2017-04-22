@@ -36,6 +36,7 @@ export class PageNews {
 
   /** Called any time page comes into view */
   ionViewWillEnter() {
+    Log.dbg1("Opening Menu", "ionViewWillEnter", "PageNews");
     this.menuCtrl.open().then(() => {});
   }
 }

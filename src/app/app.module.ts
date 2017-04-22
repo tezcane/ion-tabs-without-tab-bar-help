@@ -17,8 +17,9 @@ import {Log  } from "../utils/log";
   imports: [
     BrowserModule,
     HttpModule,
-  //IonicModule.forRoot(MyApp, {tabsHideOnSubPages: true}), //TODO This gets rid of Bar on child tabs, but causes the Tab Switch behavior to break
-    IonicModule.forRoot(MyApp),
+  //IonicModule.forRoot(MyApp),
+  //IonicModule.forRoot(MyApp, {tabsHideOnSubPages: true}), //Note: This gets rid of Bar on child tabs, but causes the Tab Switch behavior to break
+    IonicModule.forRoot(MyApp, {backButtonText: "",}), //clear text on iOS back buton "< Back"
     ReactiveFormsModule //TODO what does this do?
   ],
   bootstrap: [IonicApp],

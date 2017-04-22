@@ -1,2 +1,6 @@
 home {
+  //hide tab bar on root and child pages
+  ion-tabs .tabbar {
+    visibility: hidden;
+  }
 }
