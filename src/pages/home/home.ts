@@ -32,13 +32,13 @@ export class PageHome {
 
   ngOnInit() {
     this.events.subscribe('menu:change', (tabIdx: number) => {
-      if(this.tabIdx == tabIdx) {
-        Log.dbg1("Already on tabIdx "+tabIdx);
-      } else if(this.tabIdx != tabIdx) {
+      // if(this.tabIdx == tabIdx) {  //seen tab not change so don't do this check, so user can get tab on second attempt
+      //   Log.dbg1("Already on tabIdx "+tabIdx);
+      // } else if(this.tabIdx != tabIdx) {
         Log.dbg1("Navigating from tabIdx "+this.tabIdx+" to tabIdx "+tabIdx);
         this.tabIdx = tabIdx;
         this.tabRef.select(this.tabIdx);
-      }
+      // }
     });
   }
 }
